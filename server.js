@@ -20,6 +20,10 @@ const init = async () => {
     console.log(res.data)
 }
 
+app.get("/", function (req, res) {
+    res.send("Telegram Bot Api is live...");
+    console.log("TelegramBot App Started");
+  });
 app.post(URI, async (req, res) => {
     //console.log(req.body)
 
