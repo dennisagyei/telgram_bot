@@ -32,7 +32,7 @@ app.post(URI, async (req, res) => {
 
     var openai_reply = await OpenAi.getAiRes(text)
 
-    //console.log('Response',openai_reply)
+    console.log('Ai Response',openai_reply)
 
     await axios.post(`${TELEGRAM_API}/sendMessage`, {
         chat_id: chatId,

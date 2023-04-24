@@ -28,6 +28,8 @@ async function getRes(query) {
 async function getAiRes(input_query) {
     try {
       const response = await fetch(process.env.END_POINT,{ ask : input_query });
+
+      console.log('getAiRes',response)
       if (!response.ok) {
         throw new Error("Network response was not OK");
       }
