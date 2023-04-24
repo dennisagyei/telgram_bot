@@ -21,5 +21,20 @@ async function getRes(query) {
     return completion.data.choices[0].text;
 }
 
+
+
+async function getAiRes(input_query) {
+    try {
+      const response = await fetch(process.env.END_POINT,{ ask : input_query });
+      if (!response.ok) {
+        throw new Error("Network response was not OK");
+      }
+      
+      return response
+
+    } catch (error) {
+      console.error("There has been a problem with your fetch operation:", error);
+    }
+  }
 //getRes('How hot is the sun?');
-module.exports = {getRes}
+module.exports = {getRes, getAiRes}
