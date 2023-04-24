@@ -30,7 +30,7 @@ app.post(URI, async (req, res) => {
     const chatId = req.body.message.chat.id
     const text = req.body.message.text
 
-    var openai_reply = await OpenAi.getAiRes(text)
+    var openai_reply = await OpenAi.getRes(text)
 
     console.log('Ai Response',openai_reply)
 
