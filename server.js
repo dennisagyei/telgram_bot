@@ -27,7 +27,7 @@ app.get("/", function (req, res) {
 app.post(URI, async (req, res) => {
     
   
-    console.log('BOT_message',req.body.message)
+    //console.log('BOT_message',req.body.message)
 
     const chatId = req.body.message.chat.id
     const text = req.body.message.text
