@@ -37,11 +37,11 @@ app.post(URI, async (req, res) => {
     const openai_reply = await axios.get('https://ipro-api-gateway-production.up.railway.app/api/ai-service/integration/telegram', {
       params: { ask : text } 
     });
-   console.log('Ai Response',openai_reply)
+   //console.log('Ai Response',openai_reply.data)
 
     await axios.post(`${TELEGRAM_API}/sendMessage`, {
         chat_id: chatId,
-        text: openai_reply
+        text: openai_reply.data
     }).catch(function (error) {
         if (error.response) {
           // The request was made and the server responded with a status code
