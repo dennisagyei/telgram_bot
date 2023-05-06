@@ -25,7 +25,9 @@ app.get("/", function (req, res) {
     console.log("TelegramBot App Started");
   });
 app.post(URI, async (req, res) => {
-    //console.log(req.body)
+    
+  
+    console.log('BOT_message',req.body.message)
 
     const chatId = req.body.message.chat.id
     const text = req.body.message.text
