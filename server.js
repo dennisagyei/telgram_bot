@@ -34,10 +34,9 @@ app.post(URI, async (req, res) => {
 
     
 
-    const openai_reply = await fetch('https://ipro-api-gateway-production.up.railway.app/api/ai-service/integration/telegram', {
+    const openai_reply = await axios.get('https://ipro-api-gateway-production.up.railway.app/api/ai-service/integration/telegram', {
       ask : text
     });
-    
    console.log('Ai Response',openai_reply)
 
     await axios.post(`${TELEGRAM_API}/sendMessage`, {
