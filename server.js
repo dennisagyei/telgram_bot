@@ -35,7 +35,7 @@ app.post(URI, async (req, res) => {
     
 
     const openai_reply = await axios.get('https://ipro-api-gateway-production.up.railway.app/api/ai-service/integration/telegram', {
-      ask : text
+      params: { ask : text } 
     });
    console.log('Ai Response',openai_reply)
 
