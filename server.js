@@ -43,7 +43,7 @@ app.post(URI, async (req, res) => {
 
     await axios.post(`${TELEGRAM_API}/sendMessage`, {
         chat_id: chatId,
-        text: openai_reply.data
+        text: openai_reply.data.text
     }).catch(function (error) {
         if (error.response) {
           // The request was made and the server responded with a status code
