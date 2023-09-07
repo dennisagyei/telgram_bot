@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const axios = require('axios')
 const bodyParser = require('body-parser')
-
+const apiKey = process.env.CHAT_KEY
 
 var OpenAi = require('./services/openai');
 const { response } = require('express');
