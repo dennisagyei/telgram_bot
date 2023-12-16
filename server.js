@@ -33,9 +33,10 @@ app.get("/", function (req, res) {
 app.post(URI, async (req, res) => {
     
   
-    console.log('BOT_message',req.body.message)
+    //console.log('BOT_message',req.body.message)
 
     const chatId = req.body.message.chat.id
+    const chatName = req.body.message.chat.first_name
     const text = req.body.message.text
 
     //var openai_reply = await OpenAi.getRes(text)
@@ -48,8 +49,8 @@ app.post(URI, async (req, res) => {
    //console.log('Ai Response',openai_reply.data)
 
    //LOG IT !!!!!!!!!!!!!!!!1
-   supabaseDB.addChatData({sender_id:chatId,message:text , response: openai_reply.data.text }).then(function(result) {
-    console.log(result);
+   supabaseDB.addChatData({sender_id:chatId,message:text , response: openai_reply.data.text, param1: chatName }).then(function(result) {
+    //console.log(result);
    });
 
     await axios.post(`${TELEGRAM_API}/sendMessage`, {
