@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const apiKey = process.env.CHAT_KEY
 
 var OpenAi = require('./services/openai');
+const supabaseDB = require('./services/supabase.js')
 const { response } = require('express');
 
 const { BOT_TOKEN, SERVER_URL } = process.env
@@ -14,6 +15,11 @@ const WEBHOOK_URL = SERVER_URL + URI
 
 const app = express()
 app.use(bodyParser.json())
+
+
+supabaseDB.getChatData().then(function(result) {
+  console.log(result);
+});
 
 const init = async () => {
     const res = await axios.get(`${TELEGRAM_API}/setWebhook?url=${WEBHOOK_URL}`)
@@ -40,6 +46,11 @@ app.post(URI, async (req, res) => {
       params: { ask : text } 
     });
    //console.log('Ai Response',openai_reply.data)
+
+   //LOG IT !!!!!!!!!!!!!!!!1
+   supabaseDB.addChatData({sender_id:chatId,message:text , response: openai_reply.data.text }).then(function(result) {
+    console.log(result);
+   });
 
     await axios.post(`${TELEGRAM_API}/sendMessage`, {
         chat_id: chatId,
