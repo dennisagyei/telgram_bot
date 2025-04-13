@@ -19,11 +19,10 @@ const openaiApiKey = process.env.OPENAI_SECRET_KEY;
 const port = process.env.PORT || 5000; // Port to listen on
 const openAiModel = "gpt-3.5-turbo"; // Or your preferred model
 
-console.log('WEBHOOK_URL',WEBHOOK_URL)
 
 // Secret path segment to ensure requests come from Telegram (optional but recommended)
 const secretPath = `/webhook/${telegramToken}`;
-const fullWEBHOOK_URL = `<span class="math-inline">\{WEBHOOK_URL\}</span>{secretPath}`;
+const fullWEBHOOK_URL = WEBHOOK_URL;
 
 // --- Basic Validation ---
 if (!telegramToken || !WEBHOOK_URL) {
@@ -69,6 +68,7 @@ bot.setWebHook(fullWEBHOOK_URL)
         console.log(`Webhook successfully set to ${fullWEBHOOK_URL}`);
     })
     .catch((error) => {
+        console.log(`Webhook unsuccessfully set to ${fullWEBHOOK_URL}`);
         console.error("Error setting Telegram webhook:", error.message);
         console.error("Ensure the WEBHOOK_URL is correct, publicly accessible via HTTPS, and the bot token is valid.");
         // Decide if you want to exit if webhook setup fails
