@@ -40,6 +40,7 @@ async function getOpenAIResponse(prompt) {
           params: { ask : prompt } 
         });
 
+        console.log('openai_reply-',openai_reply)
         return openai_reply.data.text;
 
   } catch (error) {
