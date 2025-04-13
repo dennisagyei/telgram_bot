@@ -130,7 +130,7 @@ bot.on('message', async (msg) => {
         return;
     }
 
-    console.log(`[Chat ${chatId}] Received message (ID <span class="math-inline">\{messageId\}\)\: "</span>${userMessage}"`);
+    //console.log(`[Chat ${chatId}] Received message (ID <span class="math-inline">\{messageId\}\)\: "</span>${userMessage}"`);
 
     // Send 'typing...' action - wrap in try/catch
     try {
@@ -172,12 +172,8 @@ bot.on('error', (error) => {
 // --- Start Express Server ---
 app.listen(port, () => {
     console.log(`Express server listening on port ${port}`);
-    console.log(`Bot should be reachable at ${WEBHOOK_URL}`);
-    console.log(`Telegram should be sending updates to: ${fullWEBHOOK_URL}`);
-    // Reminder for ngrok users
-    if (WEBHOOK_URL.includes('ngrok.io')) {
-         console.warn("REMINDER: ngrok URL is temporary! Use a permanent URL for production.");
-    }
+    //console.log(`Bot should be reachable at ${WEBHOOK_URL}`);
+    //console.log(`Telegram should be sending updates to: ${fullWEBHOOK_URL}`);
 });
 
 // Optional: Graceful shutdown handling
