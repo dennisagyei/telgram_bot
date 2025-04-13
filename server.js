@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const axios = require('axios')
 const bodyParser = require('body-parser')
+const TelegramBot = require('node-telegram-bot-api');
 const apiKey = process.env.CHAT_KEY
 
 var OpenAi = require('./services/openai');
@@ -16,10 +17,11 @@ const WEBHOOK_URL = SERVER_URL + URI
 const app = express()
 app.use(bodyParser.json())
 
-
+/*
 supabaseDB.getChatData().then(function(result) {
   console.log(result);
 });
+*/
 
 const init = async () => {
     const res = await axios.get(`${TELEGRAM_API}/setWebhook?url=${WEBHOOK_URL}`)
