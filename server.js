@@ -83,12 +83,12 @@ app.use(express.json());
 
 // --- Webhook Endpoint ---
 // This is the endpoint Telegram will POST updates to.
-app.post(secretPath, (req, res) => {
+app.post(URI, async (req, res) => {
     try {
-        // console.log("Received Telegram update:", JSON.stringify(req.body, null, 2)); // Verbose logging for debugging
+         console.log("Received Telegram update:", JSON.stringify(req.body, null, 2)); // Verbose logging for debugging
         // Process the update using the node-telegram-bot-api library
         // This will trigger the 'message', 'callback_query', etc., events below
-        bot.processUpdate(req.body);
+        //bot.processUpdate(req.body);
         // Send an immediate 200 OK response back to Telegram
         // to acknowledge receipt of the update. Do actual processing async.
         res.sendStatus(200);
