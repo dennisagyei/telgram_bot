@@ -68,7 +68,7 @@ bot.setWebHook(fullWEBHOOK_URL)
         console.log(`Webhook successfully set to ${fullWEBHOOK_URL}`);
     })
     .catch((error) => {
-        console.log(`Webhook unsuccessfully set to ${fullWEBHOOK_URL}`);
+        //console.log(`Webhook unsuccessfully set to ${fullWEBHOOK_URL}`);
         console.error("Error setting Telegram webhook:", error.message);
         console.error("Ensure the WEBHOOK_URL is correct, publicly accessible via HTTPS, and the bot token is valid.");
         // Decide if you want to exit if webhook setup fails
@@ -85,10 +85,10 @@ app.use(express.json());
 // This is the endpoint Telegram will POST updates to.
 app.post(URI, async (req, res) => {
     try {
-         console.log("Received Telegram update:", JSON.stringify(req.body, null, 2)); // Verbose logging for debugging
+        //console.log("Received Telegram update:", JSON.stringify(req.body, null, 2)); // Verbose logging for debugging
         // Process the update using the node-telegram-bot-api library
         // This will trigger the 'message', 'callback_query', etc., events below
-        //bot.processUpdate(req.body);
+        bot.processUpdate(req.body);
         // Send an immediate 200 OK response back to Telegram
         // to acknowledge receipt of the update. Do actual processing async.
         res.sendStatus(200);
@@ -100,7 +100,7 @@ app.post(URI, async (req, res) => {
 
 // --- Health Check Endpoint (Optional but useful) ---
 app.get('/', (req, res) => {
-    res.send(`Hello! Your Telegram bot server is running. Webhook should be at ${secretPath}`);
+    res.send(`Hello! Your Telegram bot server is running.`);
 });
 
 
@@ -114,7 +114,7 @@ bot.on('message', async (msg) => {
     if (!userMessage || userMessage.startsWith('/')) {
          if (userMessage === '/start') {
              try {
-                await bot.sendMessage(chatId, "Hello! Send me a message, and I'll reply using OpenAI.");
+                await bot.sendMessage(chatId, "Hello! Send me a real message, and I'll reply.");
              } catch (sendError) {
                  console.error(`[Chat ${chatId}] Failed to send /start response:`, sendError.message);
              }
