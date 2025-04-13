@@ -33,15 +33,15 @@ if (!telegramToken || !WEBHOOK_URL) {
 // --- Initialize OpenAI ---
 // --- OpenAI Interaction Function ---
 async function getOpenAIResponse(prompt) {
-  console.log(`Sending prompt to OpenAI: "${prompt.substring(0, 50)}..."`);
+  console.log(`Sending prompt to LLM: "${prompt.substring(0, 50)}..."`);
   try {
       
         const openai_reply = await axios.get('https://ipro-api-gateway-production.up.railway.app/api/ai-service/integration/telegram', {
           params: { ask : prompt } 
         });
 
-        console.log('openai_reply-',openai_reply)
-        return openai_reply.data.text;
+        //DEBUG console.log('openai_reply-',openai_reply)
+        return openai_reply.data;
 
   } catch (error) {
       console.error("Error calling OpenAI API:", error.message);
